@@ -48,10 +48,13 @@ namespace Tema1
         public static Unit Displayitems(Cart cart)
         {
             Console.WriteLine("Your items:");
-            Console.WriteLine(cart.Items
+            Console.Write(cart.Items
                 .OrderBy(a => a.Product.Id)
                 .Select(a => $"\t{a.Product.Id} / {a.Product.Name} / {a.Product.Price} / {a.Quantity}" + Environment.NewLine)
                 .Aggregate((a, b) => a + b));
+            Console.Write("Total price: ");
+            Console.WriteLine(cart.Items.Select(a => a.Product.Price * a.Quantity).Aggregate((a, b) => a + b));
+            Console.WriteLine();
             return Unit.Default;
         }
 
